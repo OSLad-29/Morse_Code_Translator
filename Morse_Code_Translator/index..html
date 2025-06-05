@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Morse Code Translator - R2-D2 Edition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>R2-D2 Translator</h1>
+    <h2>Decode and Encode with Beeps</h2>
+
+    <label for="inputText">📝 Enter Text or Morse Code:</label>
+    <textarea id="inputText" placeholder="Type here..."></textarea>
+
+    <div class="controls">
+      <label>
+        <input type="checkbox" id="themeToggle" />
+        🌞 Light Theme
+      </label>
+
+      <label for="volumeSlider">🔊 Volume</label>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5"/>
+
+      <label for="brightnessRange">🌗 Adjust Brightness</label>
+      <input type="range" id="brightnessRange" min="0.5" max="1.5" step="0.01" value="1" />
+    </div>
+
+    <button onclick="encodeText()">🔐 Encode</button>
+    <button onclick="decodeText()">🔓 Decode</button>
+
+    <div class="output-container">
+      <label for="outputText">📤 Output:</label>
+      <textarea id="outputText" readonly></textarea>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
