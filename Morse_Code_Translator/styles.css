@@ -20,6 +20,31 @@ body {
   min-height: 100vh;
 }
 
+body.light {
+  --bg-color: #e6e6e6;
+  --container-bg: #f5f5f5;
+  --text-color: #222;
+  --border-color: #bbb;
+  --button-bg: #4caf50;
+  --button-text: #fff;
+  --button-hover-bg: #388e3c;
+}
+
+body.light-theme {
+  --bg-color: #f0f0f0;
+  --container-bg: #ffffff;
+  --text-color: #111;
+  --border-color: #ccc;
+  --button-bg: #0f9d58;
+  --button-text: #fff;
+  --button-hover-bg: #0b7d43;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: linear-gradient(to bottom right, rgba(0,0,0,0.02), rgba(0,0,0,0.05));
+}
+
 .container {
   background: var(--container-bg);
   border-radius: 8px;
