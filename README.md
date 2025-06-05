@@ -42,8 +42,8 @@ Supported characters include:
 - Vanilla JavaScript (Web Audio API for sound synthesis)
 
 ## 📸 Preview
+![Screenshot (24)](https://github.com/user-attachments/assets/62e1caa1-2fe8-497a-a25b-f573046faaa7)
 
-![screenshot-placeholder](https://via.placeholder.com/800x400.png?text=R2-D2+Translator+Preview)
 
 ## 🛡 License
 
