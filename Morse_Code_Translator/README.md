@@ -6,7 +6,7 @@ A fun and interactive Morse Code translator inspired by the iconic R2-D2 from St
 
 - 🔐 **Text to Morse Encoding**  
 - 🔓 **Morse to Text Decoding**  
-- 🔊 **Auditory Feedback with Beeps (R2-D2 style)**  
+- 🔊 **Auditory Feedback with Beeps (R2-D2 style)**
 - 🌗 **Adjustable Brightness and Theme Toggle (Light/Dark mode)**  
 - 🎚️ **Volume Control for Beep Sound**  
 - 🎨 **Responsive and Themed UI with smooth transitions**
