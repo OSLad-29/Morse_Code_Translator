@@ -1,4 +1,3 @@
-// Morse code mappings
 const morseCodeMap = {
   A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.",
   G: "--.", H: "....", I: "..", J: ".---", K: "-.-", L: ".-..",
@@ -14,44 +13,36 @@ const morseCodeMap = {
 };
 
 const reverseMorseCodeMap = Object.fromEntries(
-  Object.entries(morseCodeMap).map(([char, code]) => [code, char])
+  Object.entries(morseCodeMap).map(([k, v]) => [v, k])
 );
 
-// Encode text to Morse code
 function encodeText() {
   const input = document.getElementById("inputText").value.toUpperCase();
-  const output = input
-    .split("")
-    .map(char => morseCodeMap[char] || "")
-    .join(" ");
+  const output = input.split("").map(char => morseCodeMap[char] || "").join(" ");
   document.getElementById("outputText").value = output;
   playMorseCode(output);
 }
 
-// Decode Morse code to text
 function decodeText() {
   const input = document.getElementById("inputText").value.trim();
-  const output = input
-    .split(" ")
-    .map(code => reverseMorseCodeMap[code] || "")
-    .join("");
+  const output = input.split(" ").map(code => reverseMorseCodeMap[code] || "").join("");
   document.getElementById("outputText").value = output;
 }
 
-// Play Morse code as beeps
 function playMorseCode(code) {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let time = audioCtx.currentTime;
 
   const dotTime = 0.1;
   const dashTime = dotTime * 3;
+  const volume = parseFloat(document.getElementById("volumeSlider").value);
 
   for (let symbol of code) {
     if (symbol === ".") {
-      playBeep(audioCtx, time, dotTime);
+      playBeep(audioCtx, time, dotTime, volume);
       time += dotTime + dotTime;
     } else if (symbol === "-") {
-      playBeep(audioCtx, time, dashTime);
+      playBeep(audioCtx, time, dashTime, volume);
       time += dashTime + dotTime;
     } else if (symbol === "/") {
       time += dotTime * 7;
@@ -61,52 +52,24 @@ function playMorseCode(code) {
   }
 }
 
-// Create a beep
-function playBeep(audioCtx, startTime, duration) {
+function playBeep(audioCtx, startTime, duration, volume) {
   const oscillator = audioCtx.createOscillator();
   const gainNode = audioCtx.createGain();
   oscillator.type = "sine";
   oscillator.frequency.setValueAtTime(750, startTime);
-  gainNode.gain.setValueAtTime(parseFloat(document.getElementById("volumeSlider").value), startTime);
+  gainNode.gain.setValueAtTime(volume, startTime);
   oscillator.connect(gainNode).connect(audioCtx.destination);
   oscillator.start(startTime);
   oscillator.stop(startTime + duration);
 }
 
-// Volume control
-document.getElementById("volumeSlider").addEventListener("input", (e) => {
-  volume = parseFloat(e.target.value);
-});
-
-// Brightness control (with localStorage)
-const brightnessSlider = document.getElementById("brightnessRange");
-const savedBrightness = localStorage.getItem("brightness");
-
-if (savedBrightness) {
-  document.body.style.setProperty("--brightness", savedBrightness);
-  brightnessSlider.value = savedBrightness;
-}
-
-brightnessSlider.addEventListener("input", () => {
-  const value = brightnessSlider.value;
-  document.body.style.setProperty("--brightness", value);
-  localStorage.setItem("brightness", value);
-});
-
-// Theme selector (dark / blue)
-const themeSelect = document.getElementById("themeSelect");
-const savedTheme = localStorage.getItem("theme");
-
-if (savedTheme) {
-  document.body.classList.add(savedTheme);
-  themeSelect.value = savedTheme;
-}
-
-themeSelect.addEventListener("change", (e) => {
-  document.body.classList.remove("dark", "blue");
-  const selected = e.target.value;
-  if (selected !== "dark") {
-    document.body.classList.add(selected);
+// Theme switcher logic
+document.getElementById("themeSelect").addEventListener("change", (e) => {
+  const theme = e.target.value;
+  document.body.className = ""; // Clear all theme classes
+  if (theme === "blue") {
+    document.body.classList.add("theme-blue");
+  } else if (theme === "solarized") {
+    document.body.classList.add("theme-solarized");
   }
-  localStorage.setItem("theme", selected);
 });
