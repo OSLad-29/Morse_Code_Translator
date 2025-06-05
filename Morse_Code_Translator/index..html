@@ -7,33 +7,44 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>R2-D2 Translator</h1>
-    <h2>Decode and Encode with Beeps</h2>
+  <div class="app">
+    <header>
+      <h1>R2-D2 Morse Translator</h1>
+      <h2>Encode & Decode with Beeps</h2>
+    </header>
 
-    <label for="inputText">📝 Enter Text or Morse Code:</label>
-    <textarea id="inputText" placeholder="Type here..."></textarea>
+    <div class="main-grid">
+      <!-- Input and Controls -->
+      <div class="left-panel">
+        <label for="inputText">📝 Input Text or Morse:</label>
+        <textarea id="inputText" placeholder="Type your message here..."></textarea>
 
-    <div class="controls">
-      <label>
-        <input type="checkbox" id="themeToggle" />
-        🌞 Light Theme
-      </label>
-      
+        <div class="controls">
+          <div class="control-group">
+            <label for="themeSelect">🎨 Theme:</label>
+            <select id="themeSelect">
+              <option value="dark">Dark</option>
+              <option value="blue">Light Blue</option>
+            </select>
+          </div>
 
-      <label for="volumeSlider">🔊 Volume</label>
-      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5"/>
+          <div class="control-group">
+            <label for="volumeSlider">🔊 Volume:</label>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5"/>
+          </div>
+        </div>
 
-      <label for="brightnessRange">🌗 Adjust Brightness</label>
-      <input type="range" id="brightnessRange" min="0.5" max="1.5" step="0.01" value="1" />
-    </div>
+        <div class="buttons">
+          <button onclick="encodeText()">🔐 Encode</button>
+          <button onclick="decodeText()">🔓 Decode</button>
+        </div>
+      </div>
 
-    <button onclick="encodeText()">🔐 Encode</button>
-    <button onclick="decodeText()">🔓 Decode</button>
-
-    <div class="output-container">
-      <label for="outputText">📤 Output:</label>
-      <textarea id="outputText" readonly></textarea>
+      <!-- Output Area -->
+      <div class="right-panel">
+        <label for="outputText">📤 Output:</label>
+        <textarea id="outputText" readonly></textarea>
+      </div>
     </div>
   </div>
 
